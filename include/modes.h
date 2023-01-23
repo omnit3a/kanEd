@@ -6,6 +6,7 @@
 #define EDIT_MODE "edit mode"
 #define LIST_MODE "list mode"
 #define DELETE_MODE "delete mode"
+#define INSERT_MODE "insert mode"
 
 extern char * currentMode;
 

@@ -4,6 +4,7 @@
 #include <commands.h>
 #include <main.h>
 #include <input.h>
+#include <stdlib.h>
 
 char commandStrings[8][16] = {
   COMMAND_CMD,
@@ -38,5 +39,20 @@ void fixGapsInBuffer(int gap){
   for (int i = gap ; i < BUFFER_LINE_AMOUNT ; i++){
     strcpy(lineBuffer[i], lineBuffer[i+1]);
   }
+  writeBufferToFile();
+}
+
+void execSystemCommand(char * command){
+  printf("executing %s",command);
+  printf("# output #\n");
+  system(command);
+  printf("# end of output #\n");
+}
+
+void insertLine(int lineNumber){
+  for (int i = BUFFER_LINE_AMOUNT ; i > lineNumber ; i--){
+    strcpy(lineBuffer[i], lineBuffer[i-1]);
+  }
+  strcpy(lineBuffer[lineNumber], inputBuffer);
   writeBufferToFile();
 }

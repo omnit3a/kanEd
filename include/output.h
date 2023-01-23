@@ -8,5 +8,8 @@ extern char commandStrings[8][16];
 void writeBufferToFile();
 void fixGapsInBuffer(int gap);
 
+void execSystemCommand(char * command);
+
+void insertLine(int lineNumber);
 
 #endif

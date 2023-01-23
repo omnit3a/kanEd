@@ -9,5 +9,7 @@
 #define CAT_CMD "cat\n"
 #define WRITE_CMD "write\n"
 #define QUIT_CMD "quit\n"
+#define SHELL_CMD "shell\n"
+#define INSERT_CMD "insert\n"
 
 #endif

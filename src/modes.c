@@ -33,6 +33,10 @@ void setMode(char * newMode){
   } else if (strcmp(currentMode, DELETE_MODE) == 0){
     printf("now in delete mode\n");
     sourceFile = freopen(sourceFilename, "r+", sourceFile);
+
+  } else if (strcmp(currentMode, INSERT_MODE) == 0){
+    printf("now inserting lines\n");
+    sourceFile = freopen(sourceFilename, "r+", sourceFile);
     
   } else {
     currentMode = COMMAND_MODE;

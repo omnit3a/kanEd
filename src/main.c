@@ -83,6 +83,15 @@ int main(int argc, char ** argv){
 	
       } else if (strcmp(commandBuffer, QUIT_CMD) == 0){
 	break;
+
+      } else if (strcmp(commandBuffer, SHELL_CMD) == 0){
+	promptUser("$ ");
+	execSystemCommand(inputBuffer);
+
+      } else if (strcmp(commandBuffer, INSERT_CMD) == 0){
+	setMode(INSERT_MODE);
+	continue;
+	
       } else {
 	printf("?\n");
       }
@@ -103,6 +112,7 @@ int main(int argc, char ** argv){
 	continue;
       }
       strcpy(lineBuffer[currentLineNumber++], inputBuffer);
+      
     } else if (strcmp(currentMode, DELETE_MODE) == 0){
       strcpy(inputBuffer, "test");
       while (!isInputNumber()){
@@ -118,6 +128,22 @@ int main(int argc, char ** argv){
       tempLine = (atoi(inputBuffer)-1) % BUFFER_LINE_AMOUNT;
       strcpy(lineBuffer[tempLine], "");
       fixGapsInBuffer(tempLine);
+      
+    } else if (strcmp(currentMode, INSERT_MODE) == 0){
+      strcpy(inputBuffer, "test");
+      while (!isInputNumber()){
+	promptUser("starting line: ");
+      }
+      currentLineNumber = (atoi(inputBuffer) - 1) % BUFFER_LINE_AMOUNT;
+      while (strcmp(inputBuffer, COMMAND_CMD) != 0){
+	getStringFromUser();
+	if (strcmp(inputBuffer, COMMAND_CMD) == 0){
+	  break;
+	}
+	insertLine(currentLineNumber++);
+      }
+      setMode(COMMAND_MODE);
+      continue;
     }
   }
   
